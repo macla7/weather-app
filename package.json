@@ -1,8 +1,8 @@
 {
-  "name": "project-template",
+  "name": "weather-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Got Basic webpack, ESLint and Prettier set up.",
+  "main": ".eslintrc.js",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/macla7/project-template.git"
+    "url": "git+https://github.com/macla7/weather-app.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/macla7/project-template/issues"
+    "url": "https://github.com/macla7/weather-app/issues"
   },
-  "homepage": "https://github.com/macla7/project-template#readme",
+  "homepage": "https://github.com/macla7/weather-app#readme",
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
