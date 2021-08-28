@@ -1,0 +1,36 @@
+html {
+  font-size: 14px;
+}
+
+body {
+  background-color: rgb(0, 25, 80);
+  color: white;
+  font-family: "OpenSansLight";
+
+  h1 {
+    font-family: "OpenSansReg";
+    padding: 1rem;
+    background-color: rgba(150, 175, 230, 0.5);
+    border-radius: 2rem;
+    font-size: 1.5rem;
+  }
+
+  header {
+    margin: 0.5rem 0 0 0.5rem;
+    display: flex;
+  }
+
+  h2 {
+    display: block;
+    margin: 0.5rem;
+    font-size: 1.3rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  > * {
+    padding: 0.5rem;
+  }
+}

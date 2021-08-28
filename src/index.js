@@ -1,49 +1,49 @@
-import { filter } from "domutils";
 import "./style.scss";
+import { gifKey, weatherKey } from "./apiKeys";
+import { getGifs, getWeather } from "./fetchAPIs";
+import { compare, dropDownCreator, sliceArrCB, filterJSONCB } from "./dropDown";
+import { displayReport, makeReportDes, makeReportNums } from "./weatherReport";
 
+// Dynamic Import
 const testJSON = import("./city-list/city.list.json");
 
-function compare(a, b) {
-  let comparison = 0;
-  if (a.name > b.name) {
-    comparison = 1;
-  } else if (a.name < b.name) {
-    comparison = -1;
-  }
-  return comparison;
-}
-
 const search = document.getElementById("search");
-const searchDiv = document.querySelector(".searchDiv");
+const form = document.getElementsByTagName("form")[0];
 
-function dropDownCreator(arr, dropDownCont, searchVal) {
-  dropDownCont.innerHTML = "";
+function searcher() {
+  const searchVal = search.value.split(", ");
+  console.log(searchVal);
 
-  if (searchVal === "") {
-    return;
-  }
-
-  arr.forEach((obj) => {
-    const dropDown = document.createElement("p");
-    dropDown.classList.add("dropdown");
-    dropDown.innerHTML = `${obj.name}, ${obj.country}`;
-
-    dropDownCont.appendChild(dropDown);
-  });
+  const jsonWeather = getWeather(searchVal, weatherKey);
+  jsonWeather.then(
+    (json) => {
+      console.log(json);
+      makeReportDes(json);
+      makeReportNums(json);
+      displayReport();
+    },
+    (err) => {
+      console.log("Rejecting.. -->", err);
+    }
+  );
 }
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  searcher();
+});
 
 const JSONArr = testJSON.then((module) => module.default.sort(compare));
 
-function sliceArrCB(arr) {
-  if (arr.length > 5) {
-    return arr.slice(0, 5);
-  }
+function dropDownEL() {
+  const dropDowns = document.querySelectorAll(".dropdown");
 
-  return arr;
-}
-
-function filterJSONCB(arr, searchVal, searchLen) {
-  return arr.filter((obj) => obj.name.slice(0, searchLen) === searchVal);
+  dropDowns.forEach((choice) => {
+    choice.addEventListener("click", () => {
+      search.value = choice.innerHTML;
+      searcher();
+    });
+  });
 }
 
 search.addEventListener("keyup", () => {
@@ -52,7 +52,8 @@ search.addEventListener("keyup", () => {
 
   JSONArr.then((arr) => filterJSONCB(arr, searchVal, searchLen))
     .then((arr) => sliceArrCB(arr))
-    .then((arr) => dropDownCreator(arr, searchDiv, searchVal));
+    .then((arr) => dropDownCreator(arr, searchVal))
+    .then(() => dropDownEL());
 });
 
 console.log("End of sync");

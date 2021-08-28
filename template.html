@@ -5,17 +5,36 @@
     <title>Weather App</title>
   </head>
   <body>
-    <h1>Weather Now</h1>
+    <header>
+      <h1>Weather Now</h1>
+    </header>
     <div class="form-cont">
-      <form>
+      <form autocomplete="off">
         <div class="dropdown-content">
           <label for="search">Search:</label>
           <br />
           <input type="text" name="search" id="search" />
           <input type="submit" value="Get Weather" />
-          <div class="searchDiv"></div>
+          <div class="search-div"></div>
         </div>
       </form>
     </div>
+    <section class="weather-report hide">
+      <h2>Weather Report</h2>
+      <div class="weather">
+        <div class="description"></div>
+        <div class="numbers-cont">
+          <div class="numbers-titles">
+            <p>Tempreture</p>
+            <p>Feels like</p>
+            <p>Min Temp</p>
+            <p>Max Temp</p>
+            <p>Pressure</p>
+            <p>Humidity</p>
+          </div>
+          <div class="numbers"></div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
