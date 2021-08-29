@@ -2,7 +2,12 @@ import "./style.scss";
 import { gifKey, weatherKey } from "./apiKeys";
 import { getGifs, getWeather } from "./fetchAPIs";
 import { compare, dropDownCreator, sliceArrCB, filterJSONCB } from "./dropDown";
-import { displayReport, makeReportDes, makeReportNums } from "./weatherReport";
+import {
+  displayReport,
+  makeReportDes,
+  makeReportNums,
+  makeImageCB,
+} from "./weatherReport";
 
 // Dynamic Import
 const testJSON = import("./city-list/city.list.json");
@@ -21,6 +26,9 @@ function searcher() {
       makeReportDes(json);
       makeReportNums(json);
       displayReport();
+      getGifs(json.weather[0].main, gifKey).then((gifData) =>
+        makeImageCB(gifData)
+      );
     },
     (err) => {
       console.log("Rejecting.. -->", err);

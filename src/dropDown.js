@@ -23,8 +23,6 @@ function dropDownCreator(arr, searchVal) {
 
     searchDiv.appendChild(dropDown);
   });
-
-  return "hello";
 }
 
 function sliceArrCB(arr) {

@@ -27,6 +27,15 @@
       justify-items: end;
     }
   }
+
+  .gif-cont {
+    grid-column: 1 / 3;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
 }
 
 .hide {

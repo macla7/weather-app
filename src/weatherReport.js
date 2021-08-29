@@ -51,4 +51,10 @@ async function makeReportNums(json) {
   currNum.appendChild(humidity);
 }
 
-export { displayReport, makeReportDes, makeReportNums };
+function makeImageCB(gifData) {
+  const gif = document.getElementById("gif");
+
+  gif.src = gifData.data.images.original.url;
+}
+
+export { displayReport, makeReportDes, makeReportNums, makeImageCB };
